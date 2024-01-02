@@ -1,4 +1,5 @@
 /// <reference types="Cypress" />
+// PotterAPI documentation https://documenter.getpostman.com/view/6199862/SzYewFs9
 
 describe('Spells API', () => {
   it('returns list of spells', () => {
