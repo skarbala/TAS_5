@@ -12,7 +12,6 @@ Dokumentácia:
 - knižnice, ktoré Cypress používa -> https://docs.cypress.io/guides/references/bundled-libraries
 - config -> https://docs.cypress.io/guides/references/configuration
 - api -> https://docs.cypress.io/api/table-of-contents
-
 CSS selektory: https://flukeout.github.io/
 */
 
@@ -20,12 +19,10 @@ describe("Test: Gosslingator webpage", () => {
   before(() => {
     cy.log("Run only once")
   })
-
   beforeEach(() => {
     cy.log("Visit gosslingator webpage")
-    cy.visit("/waw/gosslingator.php")
+    cy.visit("gosslingator.php")
   })
-
   it("Add 1 Ryan", () => {
     cy.log("Add Ryan button is visible and contain correct text + click")
     cy.get("#addRyan").should("be.visible").and("contain", "Ryan!").click()
@@ -42,11 +39,24 @@ describe("Test: Gosslingator webpage", () => {
   it("Test h1, ryan out button and add two ryans", () => {
     cy.get("h1").should("be.visible").and("have.text", "Goslingate me")
     // cy.contains("h1", "GOSLINGATE ME", { matchCase: false }).should("be.visible") --> ak nie je dôležité uppercase a lowercase
-
     /* 
         Úloha: 
         1. Overit RYAM OUT button je vypnutý by default
         2. Kliknut dva krat na ryan button (pridat dvoch ryanov) a overit, že ryan out button nie je vypnutý
-    */
+        */
+  })
+
+  it.only("Check title and ryan out btn", () => {
+    cy.log("check text in btn")
+    cy.get("#removeRyan").should("contain.text", "Ryan out!")
+    //should be visible nie je should exist, ten kontroluje iba existenciu v DOM, nie visibility
+    cy.get("#removeRyan").contains("Ryan out!") //nie je good practice
+    cy.get("#removeRyan")
+
+    cy.log("check title")
+    //neiteragujete s elementom, ale s meta
+    //include = contain
+    //eq = have.text
+    cy.title().should("eq", "Gosslingate me!")
   })
 })
