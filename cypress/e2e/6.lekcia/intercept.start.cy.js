@@ -1,7 +1,9 @@
+beforeEach(() => {
+    cy.setCookiesAndLocalStorage()
+});
+
 describe('Wait for a response: Search & Result page', () => {
-    beforeEach(() => {
-        cy.setCookiesAndLocalStorage()
-    });
+
     it('TOGETHER: wait for a response on result page', () => {
         //TODO: doplnit intercept a cakanie na response pre zobrazenie vysledkov
         cy.visit('https://www.kiwi.com/en/')
@@ -12,7 +14,7 @@ describe('Wait for a response: Search & Result page', () => {
             .click()
         cy.get('[data-test="LandingSearchButton"]')
             .click()
-        cy.wait(6000)
+        cy.wait(10000)
         cy.get('[data-test="ResultCardWrapper"]').should('be.visible')
     })
 
