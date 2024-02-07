@@ -67,13 +67,15 @@ describe('Check the network communication (request + response)', () => {
             password: 'starterpack4'
         }
         cy.intercept('https://auth.skypicker.com/v1/user.exists').as('userExists')
-        cy.setCookie('__kwc_agreed', 'true')
+
         cy.visit('https://www.kiwi.com/en/')
         cy.get('[data-test="TopNav-SingInButton"]').click()
         cy.get('[data-test="MagicLogin-LoginViaEmail"]').click()
         cy.get('[data-test="MagicLogin-Email"]').type(user.name)
         cy.get('[data-test="MagicLogin-Continue"]').click()
         cy.wait('@userExists').then(interception => cy.log(interception))
+        //TODO: doplnit overenie odchadzajuceho requestu
+
         cy.get('[data-test="MagicLogin-PasswordInput"]').type(user.password)
         cy.contains('button', 'Sign in').click()
     });
