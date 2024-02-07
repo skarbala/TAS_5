@@ -1,16 +1,9 @@
 describe('Wait for a response: Search & Result page', () => {
-    it('TOGETHER: repeat waiting for response at search page destination modal', () => {
-        cy.setCookie('__kwc_agreed', 'true')
-        cy.visit('https://www.kiwi.com/en/')
-        cy.get('[data-test="PlacePickerInput-destination"]')
-            .find('[data-test="SearchField-input"]')
-            .type('Tokyo')
-    })
-
-    it('SELF_WORK: wait for a response on result page', () => {
+    beforeEach(() => {
+        cy.setCookiesAndLocalStorage()
+    });
+    it('TOGETHER: wait for a response on result page', () => {
         //TODO: doplnit intercept a cakanie na response pre zobrazenie vysledkov
-        window.localStorage.setItem('bookingcom_extension_default', 'false')
-        cy.setCookie('__kwc_agreed', 'true')
         cy.visit('https://www.kiwi.com/en/')
         cy.get('[data-test="PlacePickerInput-destination"] > [data-test="SearchField-input"]')
             .type('Tokyo')
@@ -19,8 +12,16 @@ describe('Wait for a response: Search & Result page', () => {
             .click()
         cy.get('[data-test="LandingSearchButton"]')
             .click()
-
+        cy.wait(6000)
         cy.get('[data-test="ResultCardWrapper"]').should('be.visible')
+    })
+
+    it('SELF: repeat waiting for response at search page destination modal', () => {
+        cy.setCookie('__kwc_agreed', 'true')
+        cy.visit('https://www.kiwi.com/en/')
+        cy.get('[data-test="PlacePickerInput-destination"]')
+            .find('[data-test="SearchField-input"]')
+            .type('Tokyo')
     })
 })
 
