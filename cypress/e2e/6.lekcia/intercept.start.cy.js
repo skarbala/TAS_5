@@ -17,7 +17,6 @@ describe('Wait for a response: Search & Result page', () => {
     })
 
     it('SELF: repeat waiting for response at search page destination modal', () => {
-        cy.setCookie('__kwc_agreed', 'true')
         cy.visit('https://www.kiwi.com/en/')
         cy.get('[data-test="PlacePickerInput-destination"]')
             .find('[data-test="SearchField-input"]')
@@ -27,8 +26,6 @@ describe('Wait for a response: Search & Result page', () => {
 
 describe('Replace a response and mock the state', () => {
     it('TOGETHER: return no results on result page', () => {
-        window.localStorage.setItem('bookingcom_extension_default', 'false')
-        cy.setCookie('__kwc_agreed', 'true')
         cy.visit('https://www.kiwi.com/en/')
         cy.get('[data-test="PlacePickerInput-destination"] > [data-test="SearchField-input"]')
             .type('Tokyo')
@@ -39,8 +36,6 @@ describe('Replace a response and mock the state', () => {
             .click()
     });
     it('TOGETHER: return one place based on fake fixture', () => {
-        window.localStorage.setItem('bookingcom_extension_default', 'false')
-        cy.setCookie('__kwc_agreed', 'true')
         cy.visit('https://www.kiwi.com/en/')
         cy.get('[data-test="PlacePickerInput-destination"] > [data-test="SearchField-input"]')
             .type('Tokyo')
@@ -52,7 +47,6 @@ describe('Replace a response and mock the state', () => {
     })
     it('SELF_WORK: return no places', () => {
         //TODO: doplnit intercept na vratenie prazdneho zoznamu miest
-        cy.setCookie('__kwc_agreed', 'true')
         cy.visit('https://www.kiwi.com/en/')
         cy.get('[data-test="PlacePickerInput-destination"] > [data-test="SearchField-input"]')
             .type('Tokyo')
