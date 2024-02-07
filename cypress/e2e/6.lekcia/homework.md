@@ -2,7 +2,7 @@
 
 ## Dokončite testy
 
-Implementujte všetky TODO, ktoré sa nachádzajú [v tomto súbore](https://github.com/skarbala/TAS_4/blob/main/cypress/e2e/6.lekcia/6.lekcia.cy.js)
+Implementujte všetky TODO, ktoré sa nachádzajú [v tomto súbore](https://github.com/skarbala/TAS_5/blob/main/cypress/e2e/6.lekcia/intercept.finish.cy.js)
 
 ## Namockujte dáta v destination modal
 Napíšte nasledovný test
@@ -13,18 +13,22 @@ Napíšte nasledovný test
 4. overím destináciu v modal okne
 ```
 
-places.json súbor nájdete [tu](https://github.com/skarbala/TAS_4/blob/main/cypress/fixtures/places.json)
+places.json súbor nájdete [tu](https://github.com/skarbala/TAS_5/blob/main/cypress/fixtures/places.json)
 
-## ☠️ Oklamte login
-Napíšte nasledovný test
+## Potter API
+Spustite si PotterAPI (frontend + backend)
 
-```
-1. otvorím stránku Kiwi.com
-2. kliknem na prihlásenie
-3. zvolím prihlásenie pomocou emailu
-4. zadám username testaccount@furbo.sk
-5. odpoveď zo servera nahradím statickou, v ktorej definujem exists=false
-6. overím, že mi vyskočí okno: Verify your email 
-```
+### Spelleology
 
-HINT: vytvorte si vo fixtures foldri samostatný .json súbor, prípadne definujte statickú odpoveď priamo v teste. Návod nájdete [tu](https://docs.cypress.io/api/commands/intercept#With-a-StaticResponse-object)
+Napíšte nasledovný testy
+
+#### Overenie hlášky, ak mi príde prázdna odpoveď zo servera
+1.  nahraď odpoveď z endpointu `/spells` tak aby mi vratilo prazdne pole
+2. otvor stránku Spelleology 
+3. over hlášku `Mischief managed`
+
+#### Overenie vlastného kúzla
+1. nahraď odpoveď zo servera vlastnou, kde budeš mať práve jedno kúzlo
+2. otvor stránku Spelleology
+3. klikni na názov kúzla
+4. over detail kúzla
