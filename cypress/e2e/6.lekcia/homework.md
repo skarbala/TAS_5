@@ -19,7 +19,7 @@ Spusti si PotterAPI (frontend + backend)
 
 ### Spelleology
 
-Napíš nasledovný testy
+Napíš nasledovné testy
 
 #### Overenie hlášky, ak mi príde prázdna odpoveď zo servera
 1.  nahraď odpoveď z endpointu `/spells` tak aby mi vratilo prazdne pole
