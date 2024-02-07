@@ -5,22 +5,21 @@
 Implementujte všetky TODO, ktoré sa nachádzajú [v tomto súbore](https://github.com/skarbala/TAS_5/blob/main/cypress/e2e/6.lekcia/intercept.finish.cy.js)
 
 ## Namockujte dáta v destination modal
-Napíšte nasledovný test
-```
-1. otvorím stránku Kiwi.com
-2. do inputu destination napíšem Tokyo
-3. odpoveď zo servera nahradím súborom places.json z fixtures foldera
-4. overím destináciu v modal okne
-```
+Napíš nasledovný test
 
-places.json súbor nájdete [tu](https://github.com/skarbala/TAS_5/blob/main/cypress/fixtures/places.json)
+1. otvor stránku Kiwi.com
+2. do inputu destination napíš Tokyo
+3. odpoveď zo servera nahraď súborom places.json z fixtures foldera
+4. over destináciu v modal okne
+
+places.json súbor nájdeš [tu](https://github.com/skarbala/TAS_5/blob/main/cypress/fixtures/places.json)
 
 ## Potter API
-Spustite si PotterAPI (frontend + backend)
+Spusti si PotterAPI (frontend + backend)
 
 ### Spelleology
 
-Napíšte nasledovný testy
+Napíš nasledovný testy
 
 #### Overenie hlášky, ak mi príde prázdna odpoveď zo servera
 1.  nahraď odpoveď z endpointu `/spells` tak aby mi vratilo prazdne pole
