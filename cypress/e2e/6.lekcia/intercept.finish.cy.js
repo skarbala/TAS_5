@@ -1,18 +1,8 @@
 beforeEach(() => {
-    cy.setCookiesContext()
-    cy.setBookingButton()
+    cy.setCookiesAndLocalStorage()
 });
 
 describe('Wait for a response: Search & Result page', () => {
-    it('wait for response on search page destination modal', () => {
-        cy.intercept('**/graphql?featureName=UmbrellaPlacesQuery**').as('locations')
-        cy.visit('https://www.kiwi.com/en/')
-        cy.get('[data-test="PlacePickerInput-destination"]')
-            .find('[data-test="SearchField-input"]')
-            .type('Tokyo')
-        cy.wait('@locations')
-    })
-
     it('wait for a response on result page', () => {
         cy.intercept('**featureName=SearchReturnItinerariesQuery').as('searchResults')
         cy.visit('https://www.kiwi.com/en/')
@@ -26,6 +16,16 @@ describe('Wait for a response: Search & Result page', () => {
         cy.wait('@searchResults')
         cy.get('[data-test="ResultCardWrapper"]').should('be.visible')
     })
+
+    it('wait for response on search page destination modal', () => {
+        cy.intercept('**/graphql?featureName=UmbrellaPlacesQuery**').as('locations')
+        cy.visit('https://www.kiwi.com/en/')
+        cy.get('[data-test="PlacePickerInput-destination"]')
+            .find('[data-test="SearchField-input"]')
+            .type('Tokyo')
+        cy.wait('@locations')
+    })
+
 })
 
 describe('Replace a response and mock the state', () => {
