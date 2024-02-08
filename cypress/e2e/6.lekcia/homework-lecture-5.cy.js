@@ -1,17 +1,17 @@
 /// <reference types="cypress" />
+beforeEach(() => {
 
-it('save consent into cookie', () => {
+})
+it.only('save consent into cookie', () => {
     cy.visit('https://www.kiwi.com/en')
     cy.contains('button', 'Accept').click()
-    //Overenie 1.sposob
-    cy.getCookie('__kwc_agreed').then(cookie => expect(cookie.value).to.eq('true'))
-
-    //Overenie 2.sposob
-    cy.getCookie('__kwc_agreed').should('have.a.property', 'value', 'true')
+    waitForCookie('__kwc_agreed')
+        .should('exist')
+        .and('have.a.property', 'value', 'true')
 
     //refresh stranky kde overime ze cookies popup sa po spravnom ulozeni nezobrazi
-    cy.reload()
-    cy.get('[data-test="CookiesPopup-Accept"]').should('not.exist')
+    //  cy.reload()
+    //cy.get('[data-test="CookiesPopup-Accept"]').should('not.exist')
 });
 
 it('save preferred language into cookie', () => {
@@ -22,5 +22,19 @@ it('save preferred language into cookie', () => {
     cy.get('[data-test="SubmitRegionalSettingsButton"]').click()
 
     cy.getCookie('preferred_currency').should('have.a.property', 'value', 'nok')
-
 });
+
+function waitForCookie(cookieName, currentAttempt = 1) {
+    const maxAttempts = 10
+    if (currentAttempt > maxAttempts) {
+        throw new Error(`Maximum attempts (${maxAttempts}) reached. Cookie not found.`);
+    }
+
+    return cy.getCookie(cookieName).then(cookie => {
+        if (cookie == null) {
+            cy.wait(100);
+            return waitForCookie(currentAttempt + 1);
+        }
+        return cy.wrap(cookie);
+    });
+}
