@@ -1,8 +1,6 @@
 /// <reference types="cypress" />
-beforeEach(() => {
 
-})
-it.only('save consent into cookie', () => {
+it('save consent into cookie', () => {
     cy.visit('https://www.kiwi.com/en')
     cy.contains('button', 'Accept').click()
     waitForCookie('__kwc_agreed')
@@ -10,8 +8,8 @@ it.only('save consent into cookie', () => {
         .and('have.a.property', 'value', 'true')
 
     //refresh stranky kde overime ze cookies popup sa po spravnom ulozeni nezobrazi
-    //  cy.reload()
-    //cy.get('[data-test="CookiesPopup-Accept"]').should('not.exist')
+    cy.reload()
+    cy.get('[data-test="CookiesPopup-Accept"]').should('not.exist')
 });
 
 it('save preferred language into cookie', () => {
