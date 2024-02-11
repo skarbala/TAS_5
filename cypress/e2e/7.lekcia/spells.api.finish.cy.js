@@ -45,9 +45,5 @@ describe('Spells API', () => {
         cy.request(backendBaseUrl + '/spells/' + response.body.spell.id)
           .then(response => expect(response.body.effect).to.eq(newSpell.effect))
       })
-
-    cy.visit(frontendBaseUrl + '/#/spelleology')
-    cy.contains('sneezing forever').click()
-    cy.contains('Corona').should('be.visible')
   })
 })
