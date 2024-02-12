@@ -12,11 +12,3 @@ dokumentácia https://documenter.getpostman.com/view/6199862/SzYewFs9
 #### endpoint `/sortingHat`
 
 1. navrhnite sadu testov pre tento endpoint
-
-### UI vs API
-
-Napíšte nasledovný test
-
-1. vytvorím nové kúzlo pomocou volania na backend
-2. otvorím stránku
-3. overím, že kúzlo sa mi zobrazí
